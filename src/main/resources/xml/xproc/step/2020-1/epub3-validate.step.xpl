@@ -737,7 +737,7 @@
 
             <p:choose name="ace-report">
                 <p:when test="$use-ace = 'true'">
-                    <p:output port="source">
+                    <p:output port="result">
                         <p:pipe step="ace-check" port="html-report" />
                     </p:output>
                     <p:xpath-context>
@@ -752,7 +752,7 @@
                     <p:sink/>
                 </p:when>
                 <p:otherwise>
-                    <p:output port="source" />
+                    <p:output port="result" />
                     <p:identity>
                         <p:input port="source">
                             <p:empty/>
