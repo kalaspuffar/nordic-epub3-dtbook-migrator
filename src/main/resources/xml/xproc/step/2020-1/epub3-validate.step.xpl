@@ -735,16 +735,19 @@
             <p:identity name="epub3-validate.step.category.html-report"/>
             <p:sink/>
 
+            <p:xpath-context>
+                <p:pipe port="fileset.in" step="main"/>
+            </p:xpath-context>
             <p:choose name="ace-report">
-                <p:xpath-context>
-                    <p:pipe port="fileset.in" step="main"/>
-                </p:xpath-context>
                 <p:when test="$use-ace = 'true'">
                     <p:output port="source">
-                        <p:pipe step="ace-check" port="report.out" />
+                        <p:pipe step="ace-check" port="html-report" />
                     </p:output>
+                    <p:variable name="epub-filename" select="(/*/d:file[@media-type='application/epub+zip'])[1]/@href">
+                        <p:pipe port="fileset.in" step="main"/>
+                    </p:variable>
                     <px:ace name="ace-check" px:message="Running Ace">
-                        <p:with-option name="epub" select="(/*/d:file[@media-type='application/epub+zip'])[1]/resolve-uri(@href,base-uri(.))"/>
+                        <p:with-option name="epub" select="$epub-filename"/>
                     </px:ace>
                     <p:sink/>
                 </p:when>
