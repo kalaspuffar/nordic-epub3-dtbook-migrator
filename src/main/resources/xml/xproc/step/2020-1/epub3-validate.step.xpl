@@ -48,7 +48,7 @@
     <p:option name="temp-dir" required="true"/>
     <p:option name="check-images" select="'true'"/>
     <p:option name="use-epubcheck" required="false" select="'true'"/>
-    <p:option name="use-ace" required="false" select="'true'"/>  <!-- TODO: not implemented yet -->
+    <p:option name="use-ace" required="false" select="'true'"/>
 
     <p:import href="html-validate.step.xpl"/>
     <p:import href="../validation-status.xpl"/>
@@ -93,6 +93,7 @@
                 <p:pipe port="result" step="epub3-validate.step.opf-and-html.validate"/>
                 <p:pipe port="result" step="epub3-validate.step.images.validate"/>
                 <p:pipe port="result" step="epub3-validate.step.category.html-report"/>
+                <p:pipe port="result" step="epub3-validate.step.accessability.check"/>
             </p:output>
 
 
@@ -731,6 +732,31 @@
                 </p:xslt>
             </p:group>
             <p:identity name="epub3-validate.step.category.html-report"/>
+            <p:sink/>
+
+            <p:choose name="ace-report">
+                <p:xpath-context>
+                    <p:pipe port="fileset.in" step="main"/>
+                </p:xpath-context>
+                <p:when test="$use-ace = 'true'">
+                    <p:output port="source">
+                        <p:pipe step="ace-check" port="report.out" />
+                    </p:output>
+                    <px:ace name="ace-check" px:message="Running Ace">
+                        <p:with-option name="epub" select="(/*/d:file[@media-type='application/epub+zip'])[1]/resolve-uri(@href,base-uri(.))"/>
+                    </px:ace>
+                    <p:sink/>
+                </p:when>
+                <p:otherwise>
+                    <p:output port="source" />
+                    <p:identity>
+                        <p:input port="source">
+                            <p:empty/>
+                        </p:input>
+                    </p:identity>
+                </p:otherwise>
+            </p:choose>
+            <p:identity name="epub3-validate.step.accessability.check"/>
             <p:sink/>
 
         </p:when>
