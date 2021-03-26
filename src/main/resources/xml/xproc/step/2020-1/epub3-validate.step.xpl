@@ -735,7 +735,7 @@
             <p:identity name="epub3-validate.step.category.html-report"/>
             <p:sink/>
 
-            <p:choose name="ace-report">
+            <p:choose>
                 <p:when test="$use-ace = 'true'">
                     <p:output port="result">
                         <p:pipe step="ace-check" port="html-report" />
@@ -755,7 +755,9 @@
                     <p:output port="result" />
                     <p:identity>
                         <p:input port="source">
-                            <p:empty/>
+                            <p:inline>
+                                <html />
+                            </p:inline>
                         </p:input>
                     </p:identity>
                 </p:otherwise>
