@@ -762,8 +762,11 @@
                     </p:identity>
                 </p:otherwise>
             </p:choose>
-            <p:identity name="epub3-validate.step.accessability.check"/>
+            <p:identity name="epub3-validate.step.accessability.check">
+                <p:log port="result"/> <!-- optionally with href="file:///tmp/tmp.html" if you prefer a file as output instead of stdout -->
+            </p:identity>
             <p:sink/>
+
 
         </p:when>
         <p:otherwise>
