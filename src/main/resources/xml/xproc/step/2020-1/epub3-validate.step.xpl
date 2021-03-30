@@ -740,9 +740,6 @@
                     <p:output port="result">
                         <p:pipe step="ace-check" port="html-report" />
                     </p:output>
-                    <p:xpath-context>
-                        <p:pipe port="fileset.in" step="main"/>
-                    </p:xpath-context>
                     <p:variable name="epub-filename" select="(/*/d:file[@media-type='application/epub+zip'])[1]/resolve-uri(@href,base-uri(.))">
                         <p:pipe port="fileset.in" step="main"/>
                     </p:variable>
