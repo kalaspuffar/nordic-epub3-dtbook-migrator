@@ -736,7 +736,10 @@
             <p:sink/>
 
             <p:choose name="epub3-validate.step.accessability.check.worker">
-                <p:when test="$use-ace = 'true'">
+                <p:xpath-context>
+                    <p:pipe port="fileset.in" step="main"/>
+                </p:xpath-context>
+                <p:when test="$use-ace = 'true' and exists(/*/d:file[@media-type='application/epub+zip'])">
                     <p:output port="result">
                         <p:pipe step="ace-check" port="html-report" />
                     </p:output>
@@ -764,7 +767,9 @@
                     <p:pipe port="result" step="epub3-validate.step.accessability.check.worker"/>
                 </p:input>
                 <p:with-option name="document-name" select="'ACE Report'"/>
-                <p:with-option name="document-path" select="'/tmp/anyfile.xml'"/>
+                <p:with-option name="document-path" select="(/*/d:file[@media-type='application/epub+zip'])[1]/resolve-uri(@href,base-uri(.))">
+                    <p:pipe port="fileset.in" step="main"/>
+                </p:with-option>
             </px:combine-validation-reports>
             <p:sink/>
 
