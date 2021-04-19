@@ -792,6 +792,10 @@
 -->
             <p:sink/>
 
+            <p:identity>
+                <p:log port="report.out" href="file:///tmp/tmp.html"/>
+            </p:identity>
+
         </p:when>
         <p:otherwise>
             <p:output port="fileset.out" primary="true"/>
@@ -805,10 +809,6 @@
             <p:identity/>
         </p:otherwise>
     </p:choose>
-    <p:identity>
-        <p:log port="report" href="file:///tmp/tmp.html"/>
-    </p:identity>
-
 
     <p:choose name="status">
         <p:xpath-context>
