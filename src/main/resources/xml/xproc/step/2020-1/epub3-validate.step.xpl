@@ -812,7 +812,7 @@
         </p:xpath-context>
         <p:when test="/*/@result='ok' and $fail-on-error='true'">
             <p:output port="result"/>
-            <p:log port="report.out" />
+            <p:log port="report.out" step="choose"/>
             <px:nordic-validation-status>
                 <p:input port="source">
                     <p:pipe port="report.out" step="choose"/>
