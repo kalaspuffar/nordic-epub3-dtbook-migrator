@@ -764,7 +764,7 @@
                     <p:pipe port="result" step="epub3-validate.step.accessability.check.worker"/>
                 </p:input>
                 <p:with-option name="document-name" select="'ACE Report'"/>
-                <p:with-option name="document-path" select="$epub-filename"/>
+                <p:with-option name="document-path" select="'/tmp/anyfile.xml'"/>
             </px:combine-validation-reports>
             <p:sink/>
 
