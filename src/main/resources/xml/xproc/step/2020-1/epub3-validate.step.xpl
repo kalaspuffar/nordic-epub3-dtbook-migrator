@@ -762,9 +762,9 @@
                     </p:identity>
                 </p:otherwise>
             </p:choose>
-            <p:identifier name="epub3-validate.step.accessability.check">
-                <p:log port="output" />
-            </p:identifier>
+            <p:identity name="epub3-validate.step.accessability.check">
+                <p:log port="output" /> <!-- href="file:///tmp/tmp.html" -->
+            </p:identity>
 <!--
 
             <p:wrap-sequence wrapper="d:errors" name="epub3-validate.step.accessability.check">
