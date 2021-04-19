@@ -763,7 +763,7 @@
                 </p:otherwise>
             </p:choose>
             <p:identity name="epub3-validate.step.accessability.check">
-                <p:log port="output" /> <!-- href="file:///tmp/tmp.html" -->
+                <p:log port="result" /> <!-- href="file:///tmp/tmp.html" -->
             </p:identity>
 <!--
 
