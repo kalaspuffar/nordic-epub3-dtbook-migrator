@@ -762,6 +762,12 @@
                     </p:identity>
                 </p:otherwise>
             </p:choose>
+            <p:wrap-sequence wrapper="wrapper" name="epub3-validate.step.accessability.check">
+                <p:input port="source">
+                    <p:pipe port="result" step="epub3-validate.step.accessability.check.worker"/>
+                </p:input>
+            </p:wrap-sequence>
+<!--
             <px:combine-validation-reports document-type="Nordic EPUB3 ACE Report" name="epub3-validate.step.accessability.check">
                 <p:input port="source">
                     <p:pipe port="result" step="epub3-validate.step.accessability.check.worker"/>
@@ -771,6 +777,7 @@
                     <p:pipe port="fileset.in" step="main"/>
                 </p:with-option>
             </px:combine-validation-reports>
+-->
             <p:sink/>
 
         </p:when>
