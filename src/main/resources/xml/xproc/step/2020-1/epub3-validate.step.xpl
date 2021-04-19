@@ -762,8 +762,11 @@
                     </p:identity>
                 </p:otherwise>
             </p:choose>
-            <p:wrap-sequence wrapper="d:errors" name="epub3-validate.step.accessability.check"/>
-
+            <p:wrap-sequence wrapper="d:errors" name="epub3-validate.step.accessability.check">
+                <p:input port="source">
+                    <p:pipe port="result" step="epub3-validate.step.accessability.check.worker"/>
+                </p:input>
+            </p:wrap-sequence>
             <!--
             <p:identifier name="epub3-validate.step.accessability.check">
                 <p:log port="result" />
