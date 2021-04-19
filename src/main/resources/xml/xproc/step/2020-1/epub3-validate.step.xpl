@@ -737,11 +737,11 @@
 
             <p:choose>
                 <p:when test="$use-ace = 'true'">
-                    <p:wrap-sequence wrapper="wrapper" name="epub3-validate.step.accessability.check-wrapper">
-                        <p:input port="source">
-                            <p:pipe step="ace-check" port="html-report" />
-                        </p:input>
-                    </p:wrap-sequence>
+                    <!--
+                    <p:output port="result">
+                        <p:pipe step="ace-check" port="html-report" />
+                    </p:output>
+                    -->
                     <p:variable name="epub-filename" select="(/*/d:file[@media-type='application/epub+zip'])[1]/resolve-uri(@href,base-uri(.))">
                         <p:pipe port="fileset.in" step="main"/>
                     </p:variable>
@@ -749,6 +749,12 @@
                         <p:with-option name="epub" select="$epub-filename"/>
                     </px:ace>
                     <p:sink/>
+                    <px:combine-validation-reports document-type="Nordic EPUB3 Navigation Document References" name="epub3-validate.step.accessability.check.combine-validation-reports">
+                        <p:input port="source">
+                            <p:pipe port="ace-check" step="html-report"/>
+                        </p:input>
+                        <p:with-option name="document-name" select="'ACE Report'"/>
+                    </px:combine-validation-reports>
                 </p:when>
                 <p:otherwise>
                     <p:output port="result" />
