@@ -742,18 +742,18 @@
                         <p:pipe step="ace-check" port="html-report" />
                     </p:output>
                     -->
-                    <px:combine-validation-reports document-type="Nordic EPUB3 ACE Report" name="epub3-validate.step.accessability.check.combine-validation-reports">
-                        <p:input port="source">
-                            <p:pipe port="ace-check" step="html-report"/>
-                        </p:input>
-                        <p:with-option name="document-name" select="'ACE Report'"/>
-                    </px:combine-validation-reports>
                     <p:variable name="epub-filename" select="(/*/d:file[@media-type='application/epub+zip'])[1]/resolve-uri(@href,base-uri(.))">
                         <p:pipe port="fileset.in" step="main"/>
                     </p:variable>
                     <px:ace name="ace-check" px:message="Running Ace">
                         <p:with-option name="epub" select="$epub-filename"/>
                     </px:ace>
+                    <px:combine-validation-reports document-type="Nordic EPUB3 ACE Report" name="epub3-validate.step.accessability.check.combine-validation-reports">
+                        <p:input port="source">
+                            <p:pipe port="ace-check" step="html-report"/>
+                        </p:input>
+                        <p:with-option name="document-name" select="'ACE Report'"/>
+                    </px:combine-validation-reports>
                     <p:sink/>
                 </p:when>
                 <p:otherwise>
