@@ -762,17 +762,17 @@
                     </p:identity>
                 </p:otherwise>
             </p:choose>
+            <p:identifier name="epub3-validate.step.accessability.check">
+                <p:log port="output" />
+            </p:identifier>
+<!--
+
             <p:wrap-sequence wrapper="d:errors" name="epub3-validate.step.accessability.check">
                 <p:input port="source">
                     <p:pipe port="result" step="epub3-validate.step.accessability.check.worker"/>
                 </p:input>
             </p:wrap-sequence>
-            <!--
-            <p:identifier name="epub3-validate.step.accessability.check">
-                <p:log port="result" />
-            </p:identifier>
-            -->
-<!--
+
             <p:wrap-sequence wrapper="wrapper" name="epub3-validate.step.accessability.check">
                 <p:input port="source">
                     <p:pipe port="result" step="epub3-validate.step.accessability.check.worker"/>
@@ -812,6 +812,7 @@
         </p:xpath-context>
         <p:when test="/*/@result='ok' and $fail-on-error='true'">
             <p:output port="result"/>
+            <p:log port="report.out" />
             <px:nordic-validation-status>
                 <p:input port="source">
                     <p:pipe port="report.out" step="choose"/>
