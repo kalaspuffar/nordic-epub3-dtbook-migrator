@@ -737,9 +737,11 @@
 
             <p:choose>
                 <p:when test="$use-ace = 'true'">
-                    <p:output port="result">
-                        <p:pipe step="ace-check" port="html-report" />
-                    </p:output>
+                    <p:wrap-sequence wrapper="wrapper" name="epub3-validate.step.accessability.check-wrapper">
+                        <p:input port="source">
+                            <p:pipe step="ace-check" port="html-report" />
+                        </p:input>
+                    </p:wrap-sequence>
                     <p:variable name="epub-filename" select="(/*/d:file[@media-type='application/epub+zip'])[1]/resolve-uri(@href,base-uri(.))">
                         <p:pipe port="fileset.in" step="main"/>
                     </p:variable>
