@@ -793,7 +793,7 @@
             <p:sink/>
 
             <p:identity>
-                <p:log port="report.out" href="file:///tmp/tmp.html"/>
+                <p:log port="report" href="file:///tmp/tmp.html"/>
             </p:identity>
 
         </p:when>
