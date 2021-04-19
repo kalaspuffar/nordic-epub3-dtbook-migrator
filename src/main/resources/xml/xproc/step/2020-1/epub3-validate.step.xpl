@@ -805,7 +805,10 @@
             <p:identity/>
         </p:otherwise>
     </p:choose>
-    <p:log port="report.out" href="file:///tmp/tmp.html"/>
+    <p:identity>
+        <p:log port="report.out" href="file:///tmp/tmp.html"/>
+    </p:identity>
+
 
     <p:choose name="status">
         <p:xpath-context>
