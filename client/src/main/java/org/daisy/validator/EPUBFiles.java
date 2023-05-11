@@ -352,8 +352,6 @@ public class EPUBFiles {
             false
         );
 
-        validateAudio();
-
         int received = 0;
         boolean errors = false;
         while(received < submittedWork && !errors) {
@@ -369,7 +367,7 @@ public class EPUBFiles {
         executor.shutdownNow();
     }
 
-    private void validateAudio() throws Exception {
+    public void validateAudio() throws Exception {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         XPath xPath = XPathFactory.newInstance().newXPath();

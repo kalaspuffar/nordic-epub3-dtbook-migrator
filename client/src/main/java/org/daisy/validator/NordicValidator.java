@@ -45,6 +45,7 @@ public class NordicValidator {
     private static final Option ARG_OUTPUT_JSON = new Option("j", "output-json", true, "Output validation information as JSON");
     private static final Option ARG_NO_EPUBCHECK = new Option(null, "no-epubcheck", false, "Don't validate with EPUBCheck");
     private static final Option ARG_NO_ACE = new Option(null, "no-ace", false, "Don't validate with Ace");
+    private static final Option ARG_NO_AUDIO_OVERLAY = new Option(null, "no-audio-overlay", false, "Don't validate with SMIL files audio overlay");
 
 
     private static void printHelp(Options options) {
@@ -127,6 +128,10 @@ public class NordicValidator {
             }
 
             epubFiles.validate();
+            if (!cmd.hasOption(ARG_NO_AUDIO_OVERLAY.getLongOpt())) {
+                epubFiles.validateAudio();
+            }
+
             printDuration("EPUB Validate", epubValidate, Instant.now());
             epubFiles.cleanUp();
 

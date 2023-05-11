@@ -16,6 +16,7 @@ public class TestMediaOverlay {
         epubFiles.validateWithAce(tmpFile);
         epubFiles.validateWithEpubCheck(tmpFile);
         epubFiles.validate();
+        epubFiles.validateAudio();
         epubFiles.cleanUp();
 
         for (Issue i : epubFiles.getErrorList()) {
